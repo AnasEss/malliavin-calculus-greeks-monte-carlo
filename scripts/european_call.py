@@ -6,6 +6,7 @@ from european_derivative import EuropeanDerivative
 import numpy as np
 import scipy.stats as si
 import matplotlib.pyplot as plt
+import datetime
 
 
 #######################
@@ -86,10 +87,16 @@ class EuropeanCall(EuropeanDerivative):
 
 
 ########
-# Main #
+#-Main-#
 ########
 
 if __name__ == "__main__":
+
+    ############
+    # fix seed #
+    ############
+
+    np.random.seed(0)
 
     #####################
     # General Variables #
@@ -116,36 +123,67 @@ if __name__ == "__main__":
 
     delta, vega, gamma = call_option.greeks_exact()
 
-    VEGA_epsilon = [
+    start_time = datetime.datetime.now()
+
+    VEGA_epsilon = np.array([
         call_option.greeks_difference_method(
             N=i, epsilon=eps_vega, param__="vol", order=1
         )
-        for i in range(N_max)
-    ]
-    DELTA_epsilon = [
+        for i in range(1,N_max)
+    ])
+    DELTA_epsilon = np.array([
         call_option.greeks_difference_method(
             N=i, epsilon=epse_delta, param__="price_0", order=1
         )
-        for i in range(N_max)
-    ]
-    GAMMA_epsilon = [
+        for i in range(1,N_max)
+    ])
+    GAMMA_epsilon = np.array([
         call_option.greeks_difference_method(
             N=i, epsilon=eps_gamma, param__="price_0", order=2
         )
-        for i in range(N_max)
-    ]
+        for i in range(1,N_max)
+    ])
 
-    VEGA_malliavin = [
-        call_option.greeks_malliavin(N=i, param__="vol", order=1) for i in range(N_max)
-    ]
-    DELTA_malliavin = [
+    VEGA_malliavin = np.array([
+        call_option.greeks_malliavin(N=i, param__="vol", order=1) for i in range(1,N_max)
+    ])
+    DELTA_malliavin = np.array([
         call_option.greeks_malliavin(N=i, param__="price_0", order=1)
-        for i in range(N_max)
-    ]
-    GAMMA_malliavin = [
+        for i in range(1,N_max)
+    ])
+    GAMMA_malliavin = np.array([
         call_option.greeks_malliavin(N=i, param__="price_0", order=2)
-        for i in range(N_max)
-    ]
+        for i in range(1,N_max)
+    ])
+
+    end_time = datetime.datetime.now()
+
+    Monte_Carlo_time = end_time - start_time
+    Monte_Carlo_time_hours = int(Monte_Carlo_time.total_seconds() // 3600)
+    Monte_Carlo_time_minutes = int(
+        (Monte_Carlo_time.total_seconds() - Monte_Carlo_time_hours * 3600) // 60
+    )
+    Monte_Carlo_time_seconds = int(
+        Monte_Carlo_time.total_seconds()
+        - Monte_Carlo_time_hours * 3600
+        - Monte_Carlo_time_minutes * 60
+    )
+
+    print(
+        "Monte_Carlo Time: {:02d}:{:02d}:{:02d}".format(
+            Monte_Carlo_time_hours, Monte_Carlo_time_minutes, Monte_Carlo_time_seconds
+        )
+    )
+
+    print("*"*50)
+    print("ratio_finite_diference_to_malliavin : ")
+    print(f"- delta : {DELTA_epsilon.var()/DELTA_malliavin.var()}")
+    print(f"- gamma : {GAMMA_epsilon.var()/GAMMA_malliavin.var()}")
+    print(f"- vega : {VEGA_epsilon.var()/VEGA_malliavin.var()}")
+
+    ########
+    # plot #
+    ########
 
     fig, ax = plt.subplots(1, 3, sharey=False, figsize=(24, 7))
 
@@ -165,7 +203,7 @@ if __name__ == "__main__":
     ax[1].grid()
     ax[1].legend()
 
-    ax[2].plot(VEGA_epsilon, label="finite difference method", color="blue")
+    ax[2].plot(VEGA_epsilon, label="finite difference method", color="lightblue")
     ax[2].plot(VEGA_malliavin, label="maliavin method", color="red")
     ax[2].axhline(y=vega, color="g", linestyle="--", label=f"exact value {vega:.2f}")
     ax[2].set_xlabel(r"Number of iterations")

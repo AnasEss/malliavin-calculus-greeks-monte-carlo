@@ -29,7 +29,7 @@ class Derivative(abc.ABC):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def greeks_malliavin(self, x, y, T):
+    def greeks_malliavin(self, N, param__, order):
         raise NotImplementedError
 
 
