@@ -1,3 +1,15 @@
+##################################################################################
+#                            Author: Anas ESSOUNAINI                             #
+#                         File Name: corridor_option.py                          #
+#                    Creation Date: December 7, 2020 08:33 PM                    #
+#                    Last Updated: December 7, 2020 09:57 PM                     #
+#                            Source Language: python                             #
+#Repository: https://github.com/AnasEss/malliavin-calculus-greeks-monte-carlo.git#
+#                                                                                #
+#                            --- Code Description ---                            #
+#                          corridor option simulation                            #
+##################################################################################
+
 ############
 # packages #
 ############
