@@ -15,10 +15,10 @@ Supervisor : [Prof. Noufel Frikha](https://www.lpsm.paris/pageperso/frikha/) - [
 
 The Malliavin calculus, also referred to as stochastic calculus of variations, allows to establish
 integration by parts formulas on the Wiener space that write : for some smooth function <a href="https://www.codecogs.com/eqnedit.php?latex=f" target="_blank"><img src="https://latex.codecogs.com/gif.latex?f" title="f" /></a>,
-<a href="https://www.codecogs.com/eqnedit.php?latex=E[f(X_T&space;)G]&space;=&space;E[f(X_T&space;)H(X_T&space;,&space;G))]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?E[f(X_T&space;)G]&space;=&space;E[f(X_T&space;)H(X_T&space;,&space;G))]" title="E[f(X_T )G] = E[f(X_T )H(X_T , G))]" /></a> or <a href="https://www.codecogs.com/eqnedit.php?latex=\partial_xE[f(X_T&space;)G]&space;=&space;E[f(X_T&space;)H(X_T&space;,&space;G)]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\partial_xE[f(X_T&space;)G]&space;=&space;E[f(X_T&space;)H(X_T&space;,&space;G)]" title="\partial_xE[f(X_T )G] = E[f(X_T )H(X_T , G)]" /></a> for some explicit
+<a href="https://www.codecogs.com/eqnedit.php?latex=\partial_xE[f(X_T&space;)G]&space;=&space;E[f(X_T&space;)H(X_T&space;,&space;G)]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\partial_xE[f(X_T&space;)G]&space;=&space;E[f(X_T&space;)H(X_T&space;,&space;G)]" title="\partial_xE[f(X_T )G] = E[f(X_T )H(X_T , G)]" /></a> for some explicit
 weight <a href="https://www.codecogs.com/eqnedit.php?latex=H(X_T&space;,&space;G)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?H(X_T&space;,&space;G)" title="H(X_T , G)" /></a>, where <a href="https://www.codecogs.com/eqnedit.php?latex=X_T" target="_blank"><img src="https://latex.codecogs.com/gif.latex?X_T" title="X_T" /></a> is the solution taken at time <a href="https://www.codecogs.com/eqnedit.php?latex=T" target="_blank"><img src="https://latex.codecogs.com/gif.latex?T" title="T" /></a> of some non-degenerate stochastic
 differential equation. It has many applications, notably in mathematical finance for the computation of Greeks for Delta hedging purpose.
-The aims of this project are :
+The aims of this project are : 
 
     • to understand the basic principle of Malliavin calculus,
 
