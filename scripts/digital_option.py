@@ -56,7 +56,7 @@ if __name__ == "__main__":
 
     N_max,step = 10_000,10
     eps_vega, epse_delta, eps_gamma = 0.01,1, 0.01
-    T = np.linspace(0,N_max,int(N_max/step))[1:]
+    NB_mc = np.linspace(0,N_max,int(N_max/step))
 
     ############################
     # Defining our call option #
@@ -140,22 +140,22 @@ if __name__ == "__main__":
 
     fig, ax = plt.subplots(1, 3, sharey=False, figsize=(24, 7))
 
-    ax[0].plot(DELTA_epsilon, label="finite difference method", color="blue")
-    ax[0].plot(DELTA_malliavin, label="maliavin method", color="red")
+    ax[0].plot(NB_mc,DELTA_epsilon, label="finite difference method", color="blue")
+    ax[0].plot(NB_mc,DELTA_malliavin, label="maliavin method", color="red")
     ax[0].set_xlabel(r"Number of iterations")
     ax[0].set_ylabel(r"$\Delta$", fontsize=15)
     ax[0].grid()
     ax[0].legend()
 
-    ax[1].plot(GAMMA_epsilon, label="finite difference method", color="blue")
-    ax[1].plot(GAMMA_malliavin, label="maliavin method", color="red")
+    ax[1].plot(NB_mc,GAMMA_epsilon, label="finite difference method", color="blue")
+    ax[1].plot(NB_mc,GAMMA_malliavin, label="maliavin method", color="red")
     ax[1].set_xlabel(r"Number of iterations")
     ax[1].set_ylabel(r"$\Gamma$", fontsize=15)
     ax[1].grid()
     ax[1].legend()
 
-    ax[2].plot(VEGA_epsilon, label="finite difference method", color="blue")
-    ax[2].plot(VEGA_malliavin, label="maliavin method", color="red")
+    ax[2].plot(NB_mc,VEGA_epsilon, label="finite difference method", color="blue")
+    ax[2].plot(NB_mc,VEGA_malliavin, label="maliavin method", color="red")
     ax[2].set_xlabel(r"Number of iterations")
     ax[2].set_ylabel(r"$\nu$", fontsize=15)
     ax[2].grid()
