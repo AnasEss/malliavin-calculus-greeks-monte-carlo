@@ -2,7 +2,7 @@
 
 Authors : [Anas ESSOUNAINI](https://www.linkedin.com/in/anas-essounaini-b7514014a/) | Rida LAARACH
 
-Supervisor : [Noufel Frikha](https://www.lpsm.paris/pageperso/frikha/) - [M2MO](https://masterfinance.math.univ-paris-diderot.fr/)
+Supervisor : [Prof. Noufel Frikha](https://www.lpsm.paris/pageperso/frikha/) - [M2MO](https://masterfinance.math.univ-paris-diderot.fr/)
 
 ## Table of Contents
 
@@ -20,17 +20,18 @@ weight $H(X_T , G)$, where $X_T$ is the solution taken at time $T$ of some non-d
 differential equation. It has many applications, notably in mathematical finance for the computation of Greeks for Delta hedging purpose.
 The aims of this project are :
 
-• to understand the basic principle of Malliavin calculus,
+    • to understand the basic principle of Malliavin calculus,
 
-• to implement the method in some simple examples related to the computation of Greeks
+    • to implement the method in some simple examples related to the computation of Greeks
 of financial derivatives.
 
 ## Repository structure <a name = "repo"></a>
 
 ```
 Malliavin-Calculus-Greeks-Monte-Carlo
-|   Readme.md
-|   .gitignore
+|---Readme.md
+|---.gitignore
+|---.gitattributes
 |---figures ==> Results of the simulations
 |---src
 |   |---abstract_derivative.py ==> Abstract derivative class
@@ -41,7 +42,8 @@ Malliavin-Calculus-Greeks-Monte-Carlo
 |   |---digital_option.py ==> digital option class (to run)
 |                              with simulation for digital  
 |                                options
-|   |---corridor_asian_option.py ==> corridor option class 
+|   |---asian_option.py ==> asian option class
+|   |---corridor_asian.py ==> corridor option class 
 |                                    (to run) with simulations
 |
 |---doc
