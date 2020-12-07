@@ -1,13 +1,13 @@
 # Malliavin Calculus and Applications to Financial Mathematics : Greeks computation 
 
-Authors : [Anas ESSOUNAINI](https://www.linkedin.com/in/anas-essounaini-b7514014a/) | Rida LAARACH
+Authors : [Anas ESSOUNAINI](https://www.linkedin.com/in/anas-essounaini-b7514014a/) | Rida LAARACH(https://www.linkedin.com/in/rida-laarach/?originalSubdomain=fr)
 
 Supervisor : [Prof. Noufel Frikha](https://www.lpsm.paris/pageperso/frikha/) - [M2MO](https://masterfinance.math.univ-paris-diderot.fr/)
 
 ## Table of Contents
 
 - [About](#about)
-- [Results](#res)
+- [Experiments](#res)
 - [References](#ref)
 - [Repository structure](#repo)
 
@@ -23,7 +23,7 @@ The aims of this project are :
     • to understand the basic principle of Malliavin calculus,
 
     • to implement the method in some simple examples related to the computation of Greeks
-of financial derivatives.
+    of financial derivatives.
 
 ## Repository structure <a name = "repo"></a>
 
@@ -33,7 +33,7 @@ Malliavin-Calculus-Greeks-Monte-Carlo
 |---.gitignore
 |---.gitattributes
 |---figures ==> Results of the simulations
-|---src
+|---scripts
 |   |---abstract_derivative.py ==> Abstract derivative class
 |   |---european_derivative.py ==> Representation of 
 |                                  european derivatives
@@ -42,8 +42,8 @@ Malliavin-Calculus-Greeks-Monte-Carlo
 |   |---digital_option.py ==> digital option class (to run)
 |                              with simulation for digital  
 |                                options
-|   |---asian_option.py ==> asian option class
-|   |---corridor_asian.py ==> corridor option class 
+|   
+|   |---corridor_option.py ==> corridor option class 
 |                                    (to run) with simulations
 |
 |---doc
@@ -51,11 +51,34 @@ Malliavin-Calculus-Greeks-Monte-Carlo
     |---slides.pdf
 ```
 
-## Results <a name = "res"></a>
+## Experiments <a name = "res"></a>
 
-![european option](figures/european_call.png)
+### Figures : 
 
-![binary option](figures/digital_option.png)
+<figure>
+  <img src="figures/european_call.png" alt="Caption text">
+  <figcaption><center>fig 1 - Greeks of a european call : Finite Difference Vs Malliavin</center></figcaption>
+</figure>
+
+<figure>
+  <img src="figures/digital_option.PNG" alt="Caption text">
+  <figcaption><center>fig 2 - Greeks of a digital call : Finite Difference Vs Malliavin</center></figcaption>
+</figure>
+
+<figure>
+  <img src="figures/corridor_option.PNG" alt="Caption text">
+  <figcaption><center>fig 3 - Greeks of a corridor option : Finite Difference Vs Malliavin</center></figcaption>
+</figure>
+
+### Numerical results
+
+
+
+| $\frac{Var_{finite difference}}{Var_{malliavin}}$ | $\Delta$ | $\Gamma$          | $\nu$ |
+|---------------------------------------------|----------|-------------------|---------|
+| Vanilla option                              | 0.40     | 13.21             | 3.93    |
+| Binary option                               | 41.49    | 14740486587957.42 | 5.92    |
+| Corridor option                             | 88.39    | 61324868176022.72 | 152.49  |
 
 ## References <a name = "ref"></a>
 

@@ -14,16 +14,16 @@ import datetime
 #######################
 
 
-class DigitalOption(EuropeanDerivative):
+class CorridorOption(EuropeanDerivative):
 
     ###############
     # Constructor #
     ###############
 
-    def __init__(self, S0, K, r, sigma, T):
+    def __init__(self, S0, K1,K2, r, sigma, T):
 
         EuropeanDerivative.__init__(
-            self, S0, K, r, sigma, T, lambda x: 1 if x >= K else 0, "digital"
+            self, S0, (K1,K2), r, sigma, T, lambda x: 1 if (x >= K1 and x<=K2) else 0, "Corridor"
         )
 
 
@@ -54,9 +54,9 @@ if __name__ == "__main__":
     S0 = 100
     sigma = 0.20
     r = 0.05
-    K = 75
+    K1, K2 = 75,85
 
-    digital_option = DigitalOption(S0, K, r, sigma, T)
+    Corridor_option = CorridorOption(S0, K1,K2, r, sigma, T)
 
     ###########################################################
     # Greeks : exact vs finite difference method vs malliavin #
@@ -65,33 +65,33 @@ if __name__ == "__main__":
     start_time = datetime.datetime.now()
 
     VEGA_epsilon = np.array([
-        digital_option.greeks_difference_method(
+        Corridor_option.greeks_difference_method(
             N=i, epsilon=eps_vega, param__="vol", order=1
         )
         for i in range(1,N_max,step)
     ])
     DELTA_epsilon = np.array([
-        digital_option.greeks_difference_method(
+        Corridor_option.greeks_difference_method(
             N=i, epsilon=epse_delta, param__="price_0", order=1
         )
         for i in range(1,N_max,step)
     ])
     GAMMA_epsilon = np.array([
-        digital_option.greeks_difference_method(
+        Corridor_option.greeks_difference_method(
             N=i, epsilon=eps_gamma, param__="price_0", order=2
         )
         for i in range(1,N_max,step)
     ])
 
     VEGA_malliavin = np.array([
-        digital_option.greeks_malliavin(N=i, param__="vol", order=1) for i in range(1,N_max,step)
+        Corridor_option.greeks_malliavin(N=i, param__="vol", order=1) for i in range(1,N_max,step)
     ])
     DELTA_malliavin = np.array([
-        digital_option.greeks_malliavin(N=i, param__="price_0", order=1)
+        Corridor_option.greeks_malliavin(N=i, param__="price_0", order=1)
         for i in range(1,N_max,step)
     ])
     GAMMA_malliavin = np.array([
-        digital_option.greeks_malliavin(N=i, param__="price_0", order=2)
+        Corridor_option.greeks_malliavin(N=i, param__="price_0", order=2)
         for i in range(1,N_max,step)
     ])
 
@@ -117,7 +117,7 @@ if __name__ == "__main__":
     )
 
     print("*"*50)
-    print("ratio_finite_diference_to_malliavin digital option : ")
+    print("ratio_finite_diference_to_malliavin Corridor option : ")
     print(f"- delta : {DELTA_epsilon.var()/DELTA_malliavin.var()}")
     print(f"- gamma : {GAMMA_epsilon.var()/GAMMA_malliavin.var()}")
     print(f"- vega : {VEGA_epsilon.var()/VEGA_malliavin.var()}")

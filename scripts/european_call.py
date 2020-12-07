@@ -102,7 +102,7 @@ if __name__ == "__main__":
     # General Variables #
     #####################
 
-    N_max = 10_000
+    N_max,step  = 10_000, 10
     eps_vega, epse_delta, eps_gamma = 0.04, 8, 8
 
     ############################
@@ -111,7 +111,7 @@ if __name__ == "__main__":
 
     T = 1
     S0 = 100
-    sigma = 0.20
+    sigma = 0.2
     r = 0.05
     K = 75
 
@@ -129,31 +129,31 @@ if __name__ == "__main__":
         call_option.greeks_difference_method(
             N=i, epsilon=eps_vega, param__="vol", order=1
         )
-        for i in range(1,N_max)
+        for i in range(1,N_max,step)
     ])
     DELTA_epsilon = np.array([
         call_option.greeks_difference_method(
             N=i, epsilon=epse_delta, param__="price_0", order=1
         )
-        for i in range(1,N_max)
+        for i in range(1,N_max,step)
     ])
     GAMMA_epsilon = np.array([
         call_option.greeks_difference_method(
             N=i, epsilon=eps_gamma, param__="price_0", order=2
         )
-        for i in range(1,N_max)
+        for i in range(1,N_max,step)
     ])
 
     VEGA_malliavin = np.array([
-        call_option.greeks_malliavin(N=i, param__="vol", order=1) for i in range(1,N_max)
+        call_option.greeks_malliavin(N=i, param__="vol", order=1) for i in range(1,N_max,step)
     ])
     DELTA_malliavin = np.array([
         call_option.greeks_malliavin(N=i, param__="price_0", order=1)
-        for i in range(1,N_max)
+        for i in range(1,N_max,step)
     ])
     GAMMA_malliavin = np.array([
         call_option.greeks_malliavin(N=i, param__="price_0", order=2)
-        for i in range(1,N_max)
+        for i in range(1,N_max,step)
     ])
 
     end_time = datetime.datetime.now()
@@ -176,7 +176,7 @@ if __name__ == "__main__":
     )
 
     print("*"*50)
-    print("ratio_finite_diference_to_malliavin : ")
+    print("ratio_finite_diference_to_malliavin for european call : ")
     print(f"- delta : {DELTA_epsilon.var()/DELTA_malliavin.var()}")
     print(f"- gamma : {GAMMA_epsilon.var()/GAMMA_malliavin.var()}")
     print(f"- vega : {VEGA_epsilon.var()/VEGA_malliavin.var()}")
@@ -203,7 +203,7 @@ if __name__ == "__main__":
     ax[1].grid()
     ax[1].legend()
 
-    ax[2].plot(VEGA_epsilon, label="finite difference method", color="lightblue")
+    ax[2].plot(VEGA_epsilon, label="finite difference method", color="blue")
     ax[2].plot(VEGA_malliavin, label="maliavin method", color="red")
     ax[2].axhline(y=vega, color="g", linestyle="--", label=f"exact value {vega:.2f}")
     ax[2].set_xlabel(r"Number of iterations")
