@@ -59,7 +59,7 @@ Malliavin-Calculus-Greeks-Monte-Carlo
 |:--:| 
 | *European call greeks : Finite Difference Vs. Malliavin* |
 
-| ![digital_call.png](figures/digital_option.PNG) | 
+| ![digital_call.png](figures/digital_option.png) | 
 |:--:| 
 | *Digital option greeks : Finite Difference Vs. Malliavin* |
 
