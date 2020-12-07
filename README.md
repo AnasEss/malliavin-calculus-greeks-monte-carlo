@@ -56,17 +56,17 @@ Malliavin-Calculus-Greeks-Monte-Carlo
 ### Figures : 
 
 <figure>
-  <img src="figures/european_call.png" alt="Caption text">
+  <img src="figures/european_call.png" alt="Caption text 1">
   <figcaption><center>fig 1 - Greeks of a european call : Finite Difference Vs Malliavin</center></figcaption>
 </figure>
 
 <figure>
-  <img src="figures/digital_option.PNG" alt="Caption text">
+  <img src="figures/digital_option.PNG" alt="Caption text 2">
   <figcaption><center>fig 2 - Greeks of a digital call : Finite Difference Vs Malliavin</center></figcaption>
 </figure>
 
 <figure>
-  <img src="figures/corridor_option.PNG" alt="Caption text">
+  <img src="figures/corridor_option.PNG" alt="Caption text 3">
   <figcaption><center>fig 3 - Greeks of a corridor option : Finite Difference Vs Malliavin</center></figcaption>
 </figure>
 
