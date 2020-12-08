@@ -7,9 +7,9 @@ Supervisor : [Prof. Noufel Frikha](https://www.lpsm.paris/pageperso/frikha/) - [
 ## Table of Contents
 
 - [About](#about)
+- [Repository structure](#repo)
 - [Experiments](#res)
 - [References](#ref)
-- [Repository structure](#repo)
 
 ## About <a name = "about"></a>
 
