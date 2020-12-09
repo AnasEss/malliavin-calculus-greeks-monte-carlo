@@ -23,7 +23,8 @@ import numpy as np
 
 
 class EuropeanDerivative(Derivative):
-
+    """European style derivatives
+    """
     #################
     # Class Builder #
     #################
