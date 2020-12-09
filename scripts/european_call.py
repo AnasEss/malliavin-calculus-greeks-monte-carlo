@@ -27,12 +27,23 @@ import datetime
 
 
 class EuropeanCall(EuropeanDerivative):
+    """European call class
+    """
 
     ###############
     # Constructor #
     ###############
 
     def __init__(self, S0, K, r, sigma, T):
+        """Constructor of a european call
+
+        Args:
+            S0 (float): price of underlying asset at t=0
+            K (float): strike
+            r (float): interest rate 
+            sigma (float): volatility 
+            T (float): maturity in years
+        """
 
         EuropeanDerivative.__init__(
             self, S0, K, r, sigma, T, lambda x: max(x - K, 0), "call"
@@ -43,7 +54,11 @@ class EuropeanCall(EuropeanDerivative):
     ###############################################
 
     def __black_scholes_params(self):
+        """Computes classical black scholes parameters commonly noted d1,d2
 
+        Returns:
+            (float,float): black scholes parameters d1 and d2
+        """
         r, T, S, sigma, K = (
             self.params["interest_rate"],
             self.params["maturity"],
@@ -58,6 +73,11 @@ class EuropeanCall(EuropeanDerivative):
         return d1, d2
 
     def __exact_delta(self):
+        """Computes exact value of Delta
+
+        Returns:
+            float: delta of the option
+        """
 
         d1, d2 = self.__black_scholes_params()
 
@@ -66,6 +86,11 @@ class EuropeanCall(EuropeanDerivative):
         return delta
 
     def __exact_vega(self):
+        """Computes exact value of vega
+
+        Returns:
+            float: vega of the option
+        """
 
         d1, d2 = self.__black_scholes_params()
 
@@ -76,6 +101,11 @@ class EuropeanCall(EuropeanDerivative):
         return vega
 
     def __exact_gamma(self):
+        """Computes exact value of gamma
+
+        Returns:
+            float: gamma of the option
+        """
 
         d1, d2 = self.__black_scholes_params()
 
@@ -90,6 +120,11 @@ class EuropeanCall(EuropeanDerivative):
         return gamma
 
     def greeks_exact(self):
+        """Computes delta,vega and gamma of the option
+
+        Returns:
+            (float,float,float): delta, vega, and gamma of the option
+        """
 
         delta = self.__exact_delta()
         vega = self.__exact_vega()
@@ -197,6 +232,8 @@ if __name__ == "__main__":
     ########
     # plot #
     ########
+
+    # Note that for plot adjustments I use VScode IDE ! 
 
     fig, ax = plt.subplots(1, 3, sharey=False, figsize=(24, 7))
 

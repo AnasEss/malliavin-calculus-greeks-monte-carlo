@@ -29,6 +29,17 @@ class EuropeanDerivative(Derivative):
     #################
 
     def __init__(self, S0, K, r, sigma, T, payoff, name):
+        """Constructor of european derivative
+
+        Args:
+            S0 (float): price of asset at t=0
+            K (float or tuple of strikes): strike or strikes eventually
+            r (float): interest rate
+            sigma (float): volatility
+            T (float): maturity
+            payoff (function): payoff of the option
+            name (str): name of the option
+        """
         self.name = "_".join(["euro", name])
         self.params = {
             "price_0": S0,
@@ -44,6 +55,18 @@ class EuropeanDerivative(Derivative):
     ######################
 
     def price_monte_carlo(self, N, epsilon=0, param__=None):
+        """Prices derivative under Black&Scholes assumptions
+
+        Args:
+            N (int): number of Monte Carlo simulations
+            epsilon (float, optional): used to offset a certain parameter, this is used 
+                                       to compute greeks with finite difference method easily. Defaults to 0.
+            param__ (str, optional): parameter of black & scholes model to offset with 
+                                    espsilon if diffrent this None. Defaults to None.
+
+        Returns:
+            float : price of the derivative
+        """
         G = np.random.normal(size=N)
         sum = 0
         params__ = self.params.copy()
@@ -66,6 +89,17 @@ class EuropeanDerivative(Derivative):
     ########################################
 
     def greeks_difference_method(self, N, epsilon, param__, order=1):
+        """Computes greeks with finite difference method
+
+        Args:
+            N (int): number of iterations
+            epsilon (float): epsilon used in finite diferent method for derivative estimation
+            param__ (str): name of parameter to which we compute greek
+            order (int, optional): order of derivative. Defaults to 1.
+
+        Returns:
+            float: value of the greek
+        """
         if order == 2:
             return (
                 self.price_monte_carlo(N, epsilon, param__)
@@ -83,6 +117,11 @@ class EuropeanDerivative(Derivative):
     ##########################
 
     def greeks_exact(self):
+        """Computes exact values of the greeks for the derivative
+
+        Raises:
+            Exception: no formula is available !
+        """
         raise Exception("No exact formula is available !")
 
     #############################
@@ -90,6 +129,14 @@ class EuropeanDerivative(Derivative):
     #############################
 
     def __delta__malliavin(self, N):
+        """Computes delta of the option using Malliavin Calculus
+
+        Args:
+            N (int): number of iterations
+
+        Returns:
+            float: delta of the option
+        """
 
         G = np.random.normal(size=N)
         sum = 0
@@ -113,6 +160,14 @@ class EuropeanDerivative(Derivative):
         return delta
 
     def __vega__malliavin(self, N):
+        """Computes vega of the option using Malliavin Calculus
+
+        Args:
+            N (int): number of iterations
+
+        Returns:
+            float: vega of the option
+        """
 
         G = np.random.normal(size=N)
         sum = 0
@@ -136,6 +191,14 @@ class EuropeanDerivative(Derivative):
         return vega
 
     def __gamma__malliavin(self, N):
+        """Computes gamma of the option using Malliavin Calculus
+
+        Args:
+            N (int): number of iterations
+
+        Returns:
+            float: gamma of the option
+        """
 
         T, S0, sigma = (
             self.params["maturity"],
@@ -146,6 +209,21 @@ class EuropeanDerivative(Derivative):
         return self.__vega__malliavin(N) / (S0 * S0 * sigma * T)
 
     def greeks_malliavin(self, N, param__, order):
+        """Computes greeks using Malliavin Calculus
+
+        Args:
+            N (int): number of iterations for MC
+            param__ (str): name of parameter to which we compute our derivative (greek)
+            order (int): order of derivative
+
+        Raises:
+            Exception: parame__ should be in ["vol", "price_0"]
+            Exception: order should be in [1,2]
+            Exception: if order2, pram__ should be "price_0"
+
+        Returns:
+            float: corresponding greeks
+        """
 
         if param__ not in ["vol", "price_0"]:
             raise Exception(f"Invalid param__ {param__} not in ['vol','price_0']")

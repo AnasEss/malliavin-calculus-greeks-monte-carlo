@@ -16,7 +16,6 @@
 
 from european_derivative import EuropeanDerivative
 import numpy as np
-import scipy.stats as si
 import matplotlib.pyplot as plt
 import datetime
 
@@ -27,13 +26,23 @@ import datetime
 
 
 class DigitalOption(EuropeanDerivative):
+    """digital option class
+    """
 
     ###############
     # Constructor #
     ###############
 
     def __init__(self, S0, K, r, sigma, T):
+        """Constructor of a binary option
 
+        Args:
+            S0 (float): price of asset at t=0
+            K (float): strike
+            r (float): interest rate
+            sigma (float): volatility
+            T (float): maturity in years
+        """
         EuropeanDerivative.__init__(
             self, S0, K, r, sigma, T, lambda x: 1 if x >= K else 0, "digital"
         )
@@ -137,6 +146,8 @@ if __name__ == "__main__":
     ########
     # plot #
     ########
+
+    # Note that for plot adjustments I use VScode IDE ! 
 
     fig, ax = plt.subplots(1, 3, sharey=False, figsize=(24, 7))
 

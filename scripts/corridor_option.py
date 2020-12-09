@@ -16,7 +16,6 @@
 
 from european_derivative import EuropeanDerivative
 import numpy as np
-import scipy.stats as si
 import matplotlib.pyplot as plt
 import datetime
 
@@ -27,12 +26,24 @@ import datetime
 
 
 class CorridorOption(EuropeanDerivative):
+    """Corridor option class
+    """
 
     ###############
     # Constructor #
     ###############
 
     def __init__(self, S0, K1,K2, r, sigma, T):
+        """Constructor of corridor option
+
+        Args:
+            S0 (float): price of asset at t=0
+            K1 (float): lower bound in the payoff of corridor option's payoff
+            K2 (float): upper bound in the payoff of corridor option's payoff
+            r (float): interest rate
+            sigma (float): volatility
+            T (float): maturity in years
+        """
 
         EuropeanDerivative.__init__(
             self, S0, (K1,K2), r, sigma, T, lambda x: 1 if (x >= K1 and x<=K2) else 0, "Corridor"
@@ -137,6 +148,8 @@ if __name__ == "__main__":
     ########
     # plot #
     ########
+
+    # Note that for plot adjustments I use VScode IDE ! 
 
     fig, ax = plt.subplots(1, 3, sharey=False, figsize=(24, 7))
 
