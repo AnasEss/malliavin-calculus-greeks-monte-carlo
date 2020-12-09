@@ -2,12 +2,12 @@
 #                            Author: Anas ESSOUNAINI                             #
 #                          File Name: european_call.py                           #
 #                    Creation Date: December 6, 2020 05:49 PM                    #
-#                    Last Updated: December 7, 2020 09:58 PM                     #
+#                    Last Updated: December 9, 2020 11:50 PM                     #
 #                            Source Language: python                             #
 #Repository: https://github.com/AnasEss/malliavin-calculus-greeks-monte-carlo.git#
 #                                                                                #
 #                            --- Code Description ---                            #
-#                      European Call class and simulation                        #
+#                       european call class and simulation                       #
 ##################################################################################
 
 ############
