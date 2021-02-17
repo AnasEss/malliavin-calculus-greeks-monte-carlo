@@ -1,8 +1,8 @@
-# Malliavin Calculus and Applications to Financial Mathematics : Greeks computation 
+# Malliavin Calculus and Applications to Mathematical Finance : Greeks computation 
 
 Authors : [Anas ESSOUNAINI](https://www.linkedin.com/in/anas-essounaini-b7514014a/) | [Rida LAARACH](https://www.linkedin.com/in/rida-laarach/?originalSubdomain=fr)
 
-Supervisor : [Prof. Noufel Frikha](https://www.lpsm.paris/pageperso/frikha/) - [M2MO](https://masterfinance.math.univ-paris-diderot.fr/)
+Supervisor : [Prof. Noufel Frikha](https://www.lpsm.paris/pageperso/frikha/) | [M2MO - Université de Paris VII](https://masterfinance.math.univ-paris-diderot.fr/) 
 
 ## Table of Contents
 

@@ -2,12 +2,12 @@
 #                            Author: Anas ESSOUNAINI                             #
 #                       File Name: european_derivative.py                        #
 #                    Creation Date: December 6, 2020 05:40 PM                    #
-#                    Last Updated: December 9, 2020 11:49 PM                     #
+#                    Last Updated: February 14, 2021 09:55 PM                    #
 #                            Source Language: python                             #
 #Repository: https://github.com/AnasEss/malliavin-calculus-greeks-monte-carlo.git#
 #                                                                                #
 #                            --- Code Description ---                            #
-#                        european style derivative class                         #
+#                           european derivative class                            #
 ##################################################################################
 
 ############

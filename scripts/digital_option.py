@@ -2,12 +2,12 @@
 #                            Author: Anas ESSOUNAINI                             #
 #                          File Name: digital_option.py                          #
 #                    Creation Date: December 6, 2020 05:49 PM                    #
-#                    Last Updated: December 9, 2020 11:49 PM                     #
+#                    Last Updated: February 14, 2021 09:54 PM                    #
 #                            Source Language: python                             #
 #Repository: https://github.com/AnasEss/malliavin-calculus-greeks-monte-carlo.git#
 #                                                                                #
 #                            --- Code Description ---                            #
-#                           digital option simulation                            #
+#                              digital option class                              #
 ##################################################################################
 
 ############

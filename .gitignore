@@ -2,7 +2,6 @@
 __pycache__/
 *.py[cod]
 *$py.class
-vscode/
 
 # C extensions
 *.so
@@ -51,7 +50,6 @@ coverage.xml
 *.py,cover
 .hypothesis/
 .pytest_cache/
-
 
 # Translations
 *.mo
@@ -129,5 +127,3 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-
-
